@@ -26,3 +26,7 @@ wandb>=0.15.0
 matplotlib>=3.7.0
 seaborn>=0.12.0
 plotly>=5.14.0
+
+# Web Interface
+flask>=3.0.0
+flask-cors>=4.0.0

@@ -1,12 +1,13 @@
 # Makefile for RLFF project
 # Convenience commands for training and evaluation
 
-.PHONY: help install test sft grpo tournament compare clean
+.PHONY: help install test sft grpo tournament compare clean dashboard
 
 help:
 	@echo "RLFF: Reinforcement Learning Fantasy Football"
 	@echo ""
 	@echo "Available commands:"
+	@echo "  make dashboard   - Start retro web dashboard"
 	@echo "  make install     - Install dependencies"
 	@echo "  make test        - Test environment setup"
 	@echo "  make sft         - Run supervised fine-tuning (Week 2)"
@@ -15,6 +16,10 @@ help:
 	@echo "  make compare     - Compare RL agent vs baseline"
 	@echo "  make full        - Run complete pipeline (SFT -> GRPO -> Tournament)"
 	@echo "  make clean       - Clean generated files"
+
+dashboard:
+	@echo "🏈 Starting RLFF Dashboard..."
+	@./start_dashboard.sh
 
 install:
 	@echo "Installing dependencies..."

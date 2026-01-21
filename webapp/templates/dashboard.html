@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RLFF // TRAINING TERMINAL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/retro.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="crt-overlay"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="header-content">
+                <h1 class="glitch" data-text="RLFF // TRAINING TERMINAL">RLFF // TRAINING TERMINAL</h1>
+                <div class="status-bar">
+                    <span id="system-time"></span>
+                    <span class="separator">|</span>
+                    <span id="system-status" class="status-idle">IDLE</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="dashboard-grid">
+            <!-- Control Panel -->
+            <section class="panel control-panel">
+                <div class="panel-header">
+                    <span class="panel-title">[ CONTROL PANEL ]</span>
+                </div>
+                <div class="panel-body">
+                    <div class="control-group">
+                        <button class="btn btn-primary" onclick="startTraining('test')">
+                            <span class="btn-icon">▶</span> RUN TESTS
+                        </button>
+                        <button class="btn btn-success" onclick="startTraining('sft')">
+                            <span class="btn-icon">🧠</span> START SFT
+                        </button>
+                        <button class="btn btn-success" onclick="startTraining('grpo')">
+                            <span class="btn-icon">⚡</span> START GRPO
+                        </button>
+                        <button class="btn btn-info" onclick="startTraining('tournament')">
+                            <span class="btn-icon">🏆</span> RUN TOURNAMENT
+                        </button>
+                        <button class="btn btn-danger" onclick="stopTraining()" id="stop-btn" disabled>
+                            <span class="btn-icon">■</span> STOP
+                        </button>
+                    </div>
+
+                    <div class="progress-section">
+                        <div class="progress-label">
+                            <span id="progress-text">READY</span>
+                            <span id="progress-percent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span id="step-info">0 / 0</span>
+                            <span id="time-info">00:00:00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metrics Display -->
+            <section class="panel metrics-panel">
+                <div class="panel-header">
+                    <span class="panel-title">[ SYSTEM METRICS ]</span>
+                </div>
+                <div class="panel-body">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">CHECKPOINTS</div>
+                            <div class="metric-value" id="checkpoint-status">
+                                <span id="sft-checkpoint">SFT: ✗</span>
+                                <span id="grpo-checkpoint">GRPO: ✗</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">PLAYER POOL</div>
+                            <div class="metric-value" id="player-pool-status">LOADING...</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">AVG REWARD</div>
+                            <div class="metric-value" id="avg-reward">--</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">CONFIDENCE</div>
+                            <div class="metric-value" id="confidence">--</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Terminal Output -->
+            <section class="panel terminal-panel">
+                <div class="panel-header">
+                    <span class="panel-title">[ TERMINAL OUTPUT ]</span>
+                    <button class="btn-clear" onclick="clearLogs()">CLEAR</button>
+                </div>
+                <div class="panel-body">
+                    <div class="terminal" id="terminal">
+                        <div class="terminal-line welcome">
+                            > RLFF TRAINING SYSTEM v1.0
+                        </div>
+                        <div class="terminal-line">
+                            > READY FOR INPUT...
+                        </div>
+                        <div class="terminal-cursor">█</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experiments -->
+            <section class="panel experiments-panel">
+                <div class="panel-header">
+                    <span class="panel-title">[ EXPERIMENTS ]</span>
+                    <button class="btn-refresh" onclick="loadExperiments()">↻</button>
+                </div>
+                <div class="panel-body">
+                    <div id="experiments-list" class="experiments-list">
+                        <div class="loading">SCANNING...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Player Stats -->
+            <section class="panel stats-panel">
+                <div class="panel-header">
+                    <span class="panel-title">[ PLAYER STATISTICS ]</span>
+                </div>
+                <div class="panel-body">
+                    <div id="player-stats" class="stats-content">
+                        <div class="loading">LOADING...</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
