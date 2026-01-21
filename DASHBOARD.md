@@ -4,7 +4,7 @@
 
 A fully-functional, retro-styled web interface for monitoring and controlling your RLFF training pipeline. Inspired by 1980s mainframe terminals, cyberpunk aesthetics, and classic CRT monitors.
 
-**Live at**: http://localhost:5000
+**Live at**: http://localhost:5001
 
 ---
 
@@ -118,7 +118,7 @@ source venv/bin/activate
 python webapp/app.py
 ```
 
-Then open **http://localhost:5000** in your browser.
+Then open **http://localhost:5001** in your browser.
 
 ### Running Training
 
@@ -358,8 +358,8 @@ source venv/bin/activate
 - Open browser DevTools (F12)
 - Check Console tab for errors
 - Verify API endpoints are responding:
-  - http://localhost:5000/api/status
-  - http://localhost:5000/api/logs
+  - http://localhost:5001/api/status
+  - http://localhost:5001/api/logs
 
 ### Blank Screen
 
@@ -390,6 +390,6 @@ source venv/bin/activate
 
 **Repository**: https://github.com/notderrick/RLFF
 
-**Live Dashboard**: http://localhost:5000 (when running)
+**Live Dashboard**: http://localhost:5001 (when running)
 
 **Questions?**: Open an issue on GitHub
