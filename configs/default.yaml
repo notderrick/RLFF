@@ -1,0 +1,54 @@
+# Default configuration for RLFF training
+
+# Model configuration
+model:
+  name: "microsoft/Phi-3.5-mini-instruct"
+  # Alternative: "HuggingFaceTB/SmolLM-360M-Instruct"
+  use_mlx: true  # Use MLX for Apple Silicon
+  device: "auto"  # auto, mps, cuda, cpu
+
+# Data configuration
+data:
+  num_players: 300
+  cache_data: true
+  data_dir: "data/raw"
+
+# Environment configuration
+environment:
+  num_teams: 12
+  rounds: 15
+  agent_draft_position: 5  # Middle of the pack
+  greedy_opponents: true
+
+# SFT (Supervised Fine-Tuning) configuration
+sft:
+  num_examples: 2000
+  epochs: 3
+  batch_size: 4
+  learning_rate: 2e-4
+  use_lora: true
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  output_dir: "experiments/sft"
+
+# GRPO (Reinforcement Learning) configuration
+grpo:
+  num_episodes: 100
+  num_candidates: 8  # Number of picks to generate per scenario
+  learning_rate: 1e-5
+  log_interval: 10
+  save_interval: 25
+  output_dir: "experiments/grpo"
+
+# Evaluation configuration
+evaluation:
+  num_leagues: 1000
+  positions_to_test: [1, 5, 12]  # Different draft positions
+
+# Diagnostics configuration
+diagnostics:
+  output_dir: "experiments/diagnostics"
+  generate_heatmaps: true
+  generate_confidence_plots: true
+  run_stress_tests: true
